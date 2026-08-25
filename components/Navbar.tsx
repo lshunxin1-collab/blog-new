@@ -96,6 +96,7 @@ export default function Navbar() {
             {siteConfig.navTitle || siteConfig.authorName}
             <span className="text-indigo-500 mx-1">{siteConfig.navSuffix || 'の'}</span>
             {siteConfig.navAfter || '宝藏之地'}
+          </Link>
           <div className="flex items-center gap-5">
             <nav className="flex gap-8 text-sm font-bold">
               {/* PC端依然使用全量的 navLinks */}
@@ -116,8 +117,7 @@ export default function Navbar() {
             >
               {isDark ? <Sun size={16} /> : <Moon size={16} />}
             </button>
-          </di}
-          </nav>
+          </div>
         </div>
       </header>
 
