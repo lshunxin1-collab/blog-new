@@ -5,7 +5,7 @@ export const siteConfig = {
   title: "SHIRO-blog",
   faviconUrl: "https://bu.dusays.com/2026/08/19/6a85cfd0ccf71.jpg",
   authorName: "SHIRORI",
-  bio: "研究市场价格行为中不定时上传笔记，同时缓慢学习英语ing\n\n- reserching price actiom of market and uploade notes irregullar meanwhile learning English casually",
+  bio: "研究市场价格行为中不定时上传笔记，同时缓慢学习英语ing\n\n- Reserching price action of market and uploade notes irregullarly meanwhile learning English casually",
 
   navTitle: "SHIRO",
 
