@@ -4,13 +4,16 @@ import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, PanInfo } from 'framer-motion';
+import { Sun, Moon } from 'lucide-react';
 import { siteConfig } from '../siteConfig';
+import { useTheme } from './ThemeProvider';
 
 export default function Navbar() {
   const [showNav, setShowNav] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { isDark, toggleTheme } = useTheme();
 
   // --- 🌟 物理引擎：菜单转动逻辑 ---
   const wheelRef = useRef<HTMLDivElement>(null);
@@ -93,18 +96,27 @@ export default function Navbar() {
             {siteConfig.navTitle || siteConfig.authorName}
             <span className="text-indigo-500 mx-1">{siteConfig.navSuffix || 'の'}</span>
             {siteConfig.navAfter || '宝藏之地'}
-          </Link>
-          <nav className="flex gap-8 text-sm font-bold">
-            {/* PC端依然使用全量的 navLinks */}
-            {navLinks.map((link) => {
-              const isActive = pathname === link.href || pathname === `${link.href}/`;
-              return (
-                <Link key={link.href} href={link.href} className={`relative py-1 transition-colors ${isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-700 dark:text-slate-200 hover:text-indigo-600'}`}>
-                  {link.name}
-                  {isActive && <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-indigo-500 rounded-full animate-pulse"></span>}
-                </Link>
-              );
-            })}
+          <div className="flex items-center gap-5">
+            <nav className="flex gap-8 text-sm font-bold">
+              {/* PC端依然使用全量的 navLinks */}
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href || pathname === `${link.href}/`;
+                return (
+                  <Link key={link.href} href={link.href} className={`relative py-1 transition-colors ${isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-700 dark:text-slate-200 hover:text-indigo-600'}`}>
+                    {link.name}
+                    {isActive && <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-indigo-500 rounded-full animate-pulse"></span>}
+                  </Link>
+                );
+              })}
+            </nav>
+            <button
+              onClick={toggleTheme}
+              title={isDark ? '切换到日间模式' : '切换到夜间模式'}
+              className="w-9 h-9 rounded-xl bg-white/50 dark:bg-slate-800/50 flex items-center justify-center hover:scale-105 transition-all border border-white/20 shadow-sm cursor-pointer text-slate-700 dark:text-amber-300"
+            >
+              {isDark ? <Sun size={16} /> : <Moon size={16} />}
+            </button>
+          </di}
           </nav>
         </div>
       </header>

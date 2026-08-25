@@ -8,16 +8,13 @@ import PageTransition from '../components/PageTransition';
 import SearchBar from '../components/SearchBar';
 import { siteConfig } from '../siteConfig';
 import CloudPlayer from '../components/CloudPlayer';
-import ThemeToggleBlock from '../components/ThemeToggleBlock';
 import ProfileCard from '../components/ProfileCard';
-import SiteDashboard from '../components/SiteDashboard';
 import { albums } from '../data/albums';
 import LyricBar from '../components/LyricBar';
 import { ToastProvider } from '../components/ToastProvider';
 
 import LatestPostsCarousel from '../components/LatestPostsCarousel';
 import LatestChatterCarousel from '../components/LatestChatterCarousel';
-import DanmakuBackground from '../components/DanmakuBackground';
 
 function formatUpdateTime(dateString: string) {
   if (!dateString || dateString === '1970-01-01') return '刚刚更新';
@@ -138,19 +135,14 @@ export default function Home() {
                   {/* 底层网格：说说轮播 + 主题切换器 */}
                   {/* 手机上单列，平板上分3列比例分布 */}
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full flex-1">
-                    <div className="sm:col-span-2 flex flex-col min-h-[200px]">
+                    <div className="sm:col-span-3 flex flex-col min-h-[200px]">
                       <LatestChatterCarousel chatters={top5Chatters} />
-                    </div>
-                    <div className="sm:col-span-1 flex flex-col min-h-[120px]">
-                      <ThemeToggleBlock />
                     </div>
                   </div>
 
                 </div>
               </div>
 
-              {/* 底部数据面板 */}
-              <div className="w-full mt-4"><SiteDashboard/></div>
             </main>
           </div>
         </PageTransition>
