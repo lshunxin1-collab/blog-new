@@ -32,9 +32,7 @@ export const siteConfig = {
   cloudMusicIds: ["1809646618", "3361076230", "1859390262"],
   social: {
     github: "https://github.com/lshunxin1-collab",
-    gitee: "https://github.com/heiehiehi",
     google: "lshunxin1@gmail.com",
-    email: "2706749109@qq.com",
     qq: "2706749109",
     wechat: "wx070813a",
   },

@@ -38,9 +38,7 @@ export default function ClientSocials() {
   return (
     <div className="flex gap-2 flex-wrap justify-center mt-4">
       <SocialBtn type="github" url={siteConfig.social?.github} />
-      <SocialBtn type="gitee" url={siteConfig.social?.gitee} />
       <SocialBtn type="google" url={siteConfig.social?.google} />
-      <SocialBtn type="email" onClick={() => copyToClipboard(siteConfig.social?.email || '', '邮箱')} />
       <SocialBtn type="qq" onClick={() => copyToClipboard(siteConfig.social?.qq || '', 'QQ号')} />
       <SocialBtn type="wechat" onClick={() => copyToClipboard(siteConfig.social?.wechat || '', '微信号')} />
     </div>
