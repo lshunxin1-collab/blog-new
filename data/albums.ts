@@ -5,7 +5,7 @@ export interface Album { id: string; title: string; description: string; cover: 
 export const albums: Album[] = [
   {
     "title": "blue archive",
-    "cover": "https://bu.dusays.com/2026/08/19/6a85ceda88b74.png",
+    "cover": "https://bu.dusays.com/2026/08/26/6a8df34a5722f.png",
     "id": "album_1787683949606",
     "photos": [],
     "date": "2026-08-25"

@@ -1,162 +1,128 @@
 "use client";
 
-import { useEffect, useRef } from 'react';
-import 'gitalk/dist/gitalk.css';
-import Gitalk from 'gitalk';
-import { siteConfig } from '../siteConfig';
+import { useEffect, useState } from 'react';
 
-interface MomentCommentsProps {
-  id: string; // 必须传入说说的专属 ID
+interface MomentComment {
+  id: string;
+  nickname: string;
+  content: string;
+  time: number;
 }
 
+interface MomentCommentsProps {
+  id: string; // 说说的专属 ID
+}
+
+// 全局一分钟限流的 localStorage key（所有说说共用，一分钟只能留一次言）
+const RATE_LIMIT_KEY = 'moment-comment-lasttime';
+
 export default function MomentComments({ id }: MomentCommentsProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [comments, setComments] = useState<MomentComment[]>([]);
+  const [nickname, setNickname] = useState('');
+  const [content, setContent] = useState('');
+  const [error, setError] = useState('');
+
+  const storageKey = `moment-comments-${id}`;
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    try {
+      const saved = localStorage.getItem(storageKey);
+      if (saved) setComments(JSON.parse(saved));
+    } catch (e) {}
+  }, [storageKey]);
 
-    // 清空重载，防止 React 严格模式下重复渲染
-    containerRef.current.innerHTML = '';
+  const handleSubmit = () => {
+    const text = content.trim();
+    if (!text) {
+      setError('留言内容不能为空');
+      return;
+    }
 
-    const gitalk = new Gitalk({
-      clientID: siteConfig.gitalkConfig.clientID,
-      clientSecret: siteConfig.gitalkConfig.clientSecret,
-      repo: siteConfig.gitalkConfig.repo,
-      owner: siteConfig.gitalkConfig.owner,
-      admin: siteConfig.gitalkConfig.admin,
-      // 截取前49个字符作为 GitHub Issue 的 Label（Gitalk 的要求）
-      id: id.substring(0, 49),
-      distractionFreeMode: false,
-    });
+    // 一分钟限流：距离上次留言不足 60 秒则拒绝
+    try {
+      const last = Number(localStorage.getItem(RATE_LIMIT_KEY) || 0);
+      const now = Date.now();
+      if (now - last < 60000) {
+        const remain = Math.ceil((60000 - (now - last)) / 1000);
+        setError(`留言太频繁啦，请 ${remain} 秒后再试`);
+        return;
+      }
+      localStorage.setItem(RATE_LIMIT_KEY, String(now));
+    } catch (e) {}
 
-    gitalk.render(containerRef.current);
-  }, [id]);
+    const newComment: MomentComment = {
+      id: `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+      nickname: nickname.trim() || '匿名访客',
+      content: text,
+      time: Date.now(),
+    };
+
+    const next = [newComment, ...comments];
+    setComments(next);
+    setContent('');
+    setError('');
+
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(next));
+    } catch (e) {}
+  };
+
+  const timeAgo = (t: number) => {
+    const diff = Date.now() - t;
+    const mins = Math.floor(diff / 60000);
+    if (mins < 1) return '刚刚';
+    if (mins < 60) return `${mins} 分钟前`;
+    const hours = Math.floor(mins / 60);
+    if (hours < 24) return `${hours} 小时前`;
+    return new Date(t).toLocaleDateString();
+  };
 
   return (
-    <div className="w-full relative">
-      <div ref={containerRef} className="moment-gitalk" />
+    <div className="w-full flex flex-col gap-3">
+      {/* 输入区 */}
+      <div className="flex flex-col gap-2">
+        <input
+          type="text"
+          value={nickname}
+          onChange={(e) => setNickname(e.target.value)}
+          placeholder="昵称（选填）"
+          maxLength={20}
+          className="w-full md:w-1/2 bg-white/70 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
+        />
+        <textarea
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          placeholder="说点什么吧，不需要登录～"
+          rows={2}
+          className="w-full bg-white/70 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-sm outline-none resize-none focus:ring-2 focus:ring-indigo-500"
+        />
+        {error && <p className="text-xs text-amber-500 font-medium">{error}</p>}
+        <div className="flex justify-end">
+          <button
+            onClick={handleSubmit}
+            className="px-4 py-1.5 rounded-lg bg-indigo-500 hover:bg-indigo-600 text-white text-xs font-bold transition-colors"
+          >
+            留言
+          </button>
+        </div>
+      </div>
 
-      {/* 🌟 朋友圈级专属魔改 CSS：极简、紧凑、无边框 */}
-      <style jsx global>{`
-        /* 隐藏掉一些在说说里显得太多余的 Gitalk 原生元素 */
-        .moment-gitalk .gt-header-controls-tip,
-        .moment-gitalk .gt-svg-svg {
-          display: none !important;
-        }
-
-        /* 整体容器紧凑化 */
-        .moment-gitalk .gt-container {
-          padding: 0 !important;
-        }
-
-        /* 输入框区域：极简模式 */
-        .moment-gitalk .gt-header {
-          margin-bottom: 10px !important;
-        }
-        .moment-gitalk .gt-header-avatar {
-          width: 28px !important;
-          height: 28px !important;
-          margin-top: 4px !important;
-        }
-        .moment-gitalk .gt-header-avatar img {
-          border-radius: 6px !important;
-        }
-        .moment-gitalk .gt-header-comment {
-          margin-left: 40px !important;
-        }
-        .moment-gitalk .gt-header-textarea {
-          padding: 8px 12px !important;
-          min-height: 40px !important; /* 默认很矮 */
-          background: rgba(0, 0, 0, 0.03) !important;
-          border: 1px solid transparent !important;
-          border-radius: 8px !important;
-          font-size: 13px !important;
-          transition: all 0.3s ease !important;
-          color: inherit !important;
-        }
-        .moment-gitalk .gt-header-textarea:focus {
-          min-height: 80px !important; /* 点击后展开 */
-          background: rgba(255, 255, 255, 0.8) !important;
-          border-color: #6366f1 !important; /* 激活时变色 */
-        }
-        .dark .moment-gitalk .gt-header-textarea {
-          background: rgba(255, 255, 255, 0.05) !important;
-        }
-        .dark .moment-gitalk .gt-header-textarea:focus {
-          background: rgba(0, 0, 0, 0.5) !important;
-        }
-
-        /* 发布按钮微调 */
-        .moment-gitalk .gt-btn {
-          padding: 0.3em 1rem !important;
-          font-size: 12px !important;
-          border-radius: 6px !important;
-          background: #6366f1 !important;
-          border: none !important;
-        }
-
-        /* 评论列表：去边框，纯文本流 */
-        .moment-gitalk .gt-comments {
-          padding-top: 0 !important;
-        }
-        .moment-gitalk .gt-comment {
-          padding: 8px 0 !important;
-          margin: 0 !important;
-          border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
-        }
-        .dark .moment-gitalk .gt-comment {
-          border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
-        }
-        .moment-gitalk .gt-comment:first-child {
-          border-top: none !important;
-        }
-        
-        /* 评论头像缩小 */
-        .moment-gitalk .gt-comment-avatar {
-          width: 24px !important;
-          height: 24px !important;
-        }
-        .moment-gitalk .gt-comment-avatar img {
-          border-radius: 4px !important;
-        }
-
-        /* 评论内容布局 */
-        .moment-gitalk .gt-comment-content {
-          margin-left: 34px !important;
-          padding: 0 !important;
-          background: transparent !important;
-          border: none !important;
-          box-shadow: none !important;
-        }
-        
-        /* 评论者名字 */
-        .moment-gitalk .gt-comment-username {
-          font-size: 13px !important;
-          font-weight: bold !important;
-          color: #576b95 !important; /* 朋友圈蓝色 */
-        }
-        .dark .moment-gitalk .gt-comment-username {
-          color: #7f99cc !important;
-        }
-
-        /* 评论正文 */
-        .moment-gitalk .gt-comment-body {
-          font-size: 13px !important;
-          color: inherit !important;
-          padding: 2px 0 0 0 !important;
-          margin-top: 0 !important;
-        }
-        .moment-gitalk .gt-comment-body p {
-          margin: 0 !important;
-        }
-
-        /* 隐藏回复按钮等杂项，保持极简 */
-        .moment-gitalk .gt-comment-like,
-        .moment-gitalk .gt-comment-edit,
-        .moment-gitalk .gt-comment-reply {
-          display: none !important;
-        }
-      `}</style>
+      {/* 留言列表 */}
+      <div className="flex flex-col gap-2.5">
+        {comments.length === 0 ? (
+          <p className="text-sm text-slate-400 dark:text-slate-500 py-2">还没有留言，快来抢沙发～</p>
+        ) : (
+          comments.map((c) => (
+            <div key={c.id} className="flex flex-col gap-1 border-b border-slate-200/50 dark:border-slate-700/50 pb-2 last:border-none">
+              <div className="flex items-center gap-2">
+                <span className="text-[13px] font-bold text-[#576b95] dark:text-[#7f99cc]">{c.nickname}</span>
+                <span className="text-[11px] text-slate-400">{timeAgo(c.time)}</span>
+              </div>
+              <p className="text-[14px] text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-wrap break-words">{c.content}</p>
+            </div>
+          ))
+        )}
+      </div>
     </div>
   );
 }
