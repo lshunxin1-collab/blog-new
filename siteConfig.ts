@@ -5,14 +5,14 @@ export const siteConfig = {
   title: "SHIRO-blog",
   faviconUrl: "https://bu.dusays.com/2026/08/19/6a85cfd0ccf71.jpg",
   authorName: "SHIRORI",
-  bio: "研究市场价格行为中不定时上传笔记，同时缓慢学习英语ing\n\n- Reserching price action of market and uploade notes irregullarly meanwhile learning English casually",
+  bio: "该网站用于存储一些有用的知识&工具",
 
-  navTitle: "SHIRO",
+  navTitle: "",
 
   // 👇 【新增】导航栏中间的那个后缀/分隔符（默认是 の）
-  navSuffix: "の",
+  navSuffix: "𝘚𝘩𝘪𝘳𝘰",
 
-  navAfter: "Blog",
+  navAfter: "",
 
   // 2. 头像设置 (支持网络链接，或将图片放入 public 文件夹后使用 "/me.jpg")
   avatarUrl: "https://bu.dusays.com/2026/08/19/6a85cfd0ccf71.jpg",
