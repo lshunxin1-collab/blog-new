@@ -2,10 +2,10 @@
 
 export const siteConfig = {
   // 1. 网站标题与博主信息
-  title: "SHIRO-blog",
+  title: "SHIRO",
   faviconUrl: "https://bu.dusays.com/2026/08/19/6a85cfd0ccf71.jpg",
   authorName: "SHIRORI",
-  bio: "该网站用于存储一些有用的知识&工具",
+  bio: "该网站用于存储一些有用的知识&工具（目前正在开发中ing）",
 
   navTitle: "",
 
@@ -29,7 +29,7 @@ export const siteConfig = {
 
   // 5. 首页照片墙预览图
   photoWallImage: "https://bu.dusays.com/2026/03/24/69c1e38b4c370.jpg",
-  cloudMusicIds: ["2618807381"],
+  cloudMusicIds: ["2618807381", "3347935488", "3334821171", "2093257373", "3378983731", "2093257374", "1403774122"],
   social: {
     github: "https://github.com/lshunxin1-collab",
     x: "https://x.com/shirori666",

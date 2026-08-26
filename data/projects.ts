@@ -9,4 +9,13 @@ export type Project = {
   tags: string[];
 };
 
-export const projectsData: Project[] = [];
+export const projectsData: Project[] = [
+  {
+    "id": "proj_1787725614812",
+    "name": "300w正弦波逆变器",
+    "githubUrl": "none",
+    "description": "一个基于推挽+spwm调制的可带感性负载逆变器",
+    "icon": "S",
+    "tags": []
+  }
+];
