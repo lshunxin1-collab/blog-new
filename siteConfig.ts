@@ -20,7 +20,7 @@ export const siteConfig = {
   // 3. 网站背景设置 (二选一)
   // 如果想用纯图片背景，请在下面 bgImage 写路径，并将 useGradient 设为 false
   useGradient: false,
-  themeColors: ["#a18cd1", "#fbc2eb", "#a1c4fd", "#c2e9fb"], // 呼吸流动的颜色组合
+  themeColors: ["#d9f2fd", "#c6e3f6", "#95b2e2", "#c2e9fb"], // 呼吸流动的颜色组合
 // 修改这里：变成图片数组
   bgImages: [],
 
