@@ -28,11 +28,11 @@ export default function LyricBar() {
 
   // 这里的波浪数据，方便循环渲染，减少代码冗余
   const waves = [
-    { color: 'bg-indigo-400', delay: '0ms' },
-    { color: 'bg-purple-400', delay: '200ms' },
-    { color: 'bg-indigo-500', delay: '400ms' },
-    { color: 'bg-purple-500', delay: '100ms' },
-    { color: 'bg-indigo-300', delay: '300ms' },
+    { color: 'bg-black', delay: '0ms' },
+    { color: 'bg-black', delay: '200ms' },
+    { color: 'bg-black', delay: '400ms' },
+    { color: 'bg-black', delay: '100ms' },
+    { color: 'bg-black', delay: '300ms' },
   ];
 
   return (
@@ -55,7 +55,7 @@ export default function LyricBar() {
         }
       `}</style>
 
-      <div className="w-full rounded-3xl bg-white/70 dark:bg-white/70 backdrop-blur-xl border border-slate-200 dark:border-white/20 shadow-2xl p-5 flex items-center justify-between transition-all duration-700 hover:shadow-indigo-500/20 group h-20">
+      <div className="w-full rounded-3xl bg-white/70 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200 dark:border-white/10 shadow-2xl p-5 flex items-center justify-between transition-all duration-700 hover:shadow-indigo-500/20 group h-20">
 
         {/* 1. 音频波形动态部分：改用统一渲染逻辑实现过渡 */}
         <div className="flex items-end justify-center gap-[4px] h-8 w-16">
@@ -78,7 +78,7 @@ export default function LyricBar() {
 
         {/* 2. 歌词显示区 */}
         <div className="flex-1 px-8 flex justify-center items-center overflow-hidden">
-          <p className="text-slate-800 dark:text-slate-900 text-lg font-bold tracking-widest truncate">
+          <p className="text-slate-800 dark:text-white text-lg font-bold tracking-widest truncate">
             {displayedLyric}
             <span className="inline-block w-[3px] h-5 bg-indigo-400 align-middle ml-1 shadow-[0_0_8px_rgba(99,102,241,0.8)] animate-cursor"></span>
           </p>
@@ -86,7 +86,7 @@ export default function LyricBar() {
 
         {/* 3. 右侧音乐图标 */}
         <div className="w-16 flex justify-end">
-          <svg className={`w-6 h-6 text-indigo-400/50 transition-all duration-500 ${isPlaying ? 'animate-bounce' : 'opacity-30'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className={`w-6 h-6 text-black transition-all duration-500 ${isPlaying ? 'animate-bounce' : 'opacity-30'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
           </svg>
         </div>

@@ -58,14 +58,14 @@ export default function FloatingPlayer() {
           <button
             onClick={(e) => { e.stopPropagation(); togglePlay(); }}
             onPointerDown={(e) => e.stopPropagation()}
-            className="w-8 h-8 bg-indigo-500 text-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform cursor-pointer"
+            className="w-8 h-8 bg-black-50 text-black rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform cursor-pointer"
           >
             {isPlaying ? <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg> : <svg className="w-3.5 h-3.5 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>}
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); nextSong(); }}
             onPointerDown={(e) => e.stopPropagation()}
-            className="text-slate-600 dark:text-slate-300 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors cursor-pointer"
+            className="text-slate-600 dark:text-slate-300 hover:text-sky-300 dark:hover:text-sky-200 transition-colors cursor-pointer"
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
           </button>

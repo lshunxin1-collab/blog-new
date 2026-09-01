@@ -100,7 +100,11 @@ export function MusicProvider({ children }: { children: ReactNode }) {
           }));
 
         if (isMounted) {
-          if (mergedPlaylist.length > 0) setPlaylist(mergedPlaylist);
+          if (mergedPlaylist.length > 0) {
+            setPlaylist(mergedPlaylist);
+            // 🌟 每次进入随机挑选一首作为起始歌曲，而不是固定按顺序从第一首开始
+            setCurrentIndex(Math.floor(Math.random() * mergedPlaylist.length));
+          }
           else setCurrentLyric("云端链路受阻");
           setIsLoading(false);
         }
