@@ -2,11 +2,12 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function LatestPostsCarousel({ posts }: { posts: any[] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const router = useRouter();
 
   // 设置自动播放定时器
   useEffect(() => {
@@ -22,10 +23,10 @@ export default function LatestPostsCarousel({ posts }: { posts: any[] }) {
   const currentPost = posts[currentIndex];
 
   return (
-    <div className="md:col-span-4 rounded-3xl bg-white/40 dark:bg-slate-800/50 backdrop-blur-md border border-white/40 dark:border-white/10 shadow-xl overflow-hidden relative group min-h-[420px] h-full flex flex-col">
-
-      {/* 整个卡片的点击跳转区域 */}
-      <Link href={currentPost.slug === 'none' ? '#' : `/posts/${currentPost.slug}`} className="absolute inset-0 z-20" aria-label={`阅读 ${currentPost.title}`} />
+    <div
+      onClick={() => { if (currentPost.slug !== 'none') router.push(`/posts/${currentPost.slug}`); }}
+      className="md:col-span-4 rounded-3xl bg-white/40 dark:bg-slate-800/50 backdrop-blur-md border border-white/40 dark:border-white/10 shadow-xl overflow-hidden relative group min-h-[420px] h-full flex flex-col cursor-pointer"
+    >
 
       {/* 带有渐变交叉淡入淡出的图片背景 */}
       <AnimatePresence mode="wait">
@@ -43,7 +44,7 @@ export default function LatestPostsCarousel({ posts }: { posts: any[] }) {
       </AnimatePresence>
 
       {/* 文本内容区 */}
-      <div className="relative z-10 flex flex-col justify-end p-6 w-full mt-auto h-full pointer-events-none">
+      <div className="relative z-10 flex flex-col justify-end p-6 w-full mt-auto h-full">
         <div className="flex items-center gap-2 mb-3">
           <span className="px-3 py-1 bg-indigo-500/80 backdrop-blur-lg rounded-full text-[10px] text-white font-black uppercase tracking-widest shadow-lg">Latest Insight</span>
           {currentPost.formattedDate && (
