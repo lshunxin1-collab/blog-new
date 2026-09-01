@@ -4,7 +4,7 @@ export const siteConfig = {
   // 1. 网站标题与博主信息
   title: "",
   faviconUrl: "https://bu.dusays.com/2026/08/19/6a85cfd0ccf71.jpg",
-  authorName: "SHIRO",
+  authorName: "",
   bio: "该网站用于存储一些有用的知识&工具（目前正在开发中ing）",
 
   navTitle: "",
