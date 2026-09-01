@@ -1,8 +1,6 @@
 "use client";
 import { useEffect, useState } from 'react';
 import { useMusic } from './MusicProvider';
-// 🌟 核心引入：Next.js 路由钩子
-import { useRouter } from 'next/navigation';
 
 const formatTime = (time: number) => {
   if (!time || isNaN(time)) return "00:00";
@@ -14,8 +12,6 @@ const formatTime = (time: number) => {
 export default function CloudPlayer() {
   const { playlist, currentSong, isPlaying, progress, currentTime, duration, currentLyric, isLoading, togglePlay, nextSong, prevSong, handleSeek } = useMusic();
   const [displayedLyric, setDisplayedLyric] = useState("");
-  // 🌟 初始化路由
-  const router = useRouter();
 
   useEffect(() => {
     let i = 0;
@@ -91,8 +87,7 @@ export default function CloudPlayer() {
 
       {/* 🌟 终极逻辑：在外层 Div 直接绑定 onClick 进行页面跳转 */}
       <div
-        onClick={() => router.push('/music')}
-        className="h-full w-full rounded-3xl bg-white/40 dark:bg-slate-800/50 backdrop-blur-md border border-white/40 dark:border-white/10 shadow-xl p-6 flex flex-col justify-between transition-all duration-700 hover:scale-[1.02] relative group overflow-hidden cursor-pointer"
+        className="h-full w-full rounded-3xl bg-white/40 dark:bg-slate-800/50 backdrop-blur-md border border-white/40 dark:border-white/10 shadow-xl p-6 flex flex-col justify-between transition-all duration-700 relative group overflow-hidden"
       >
         <div className={`absolute -top-20 -right-20 w-48 h-48 bg-indigo-500/20 blur-[50px] rounded-full transition-opacity duration-1000 ${isPlaying ? 'opacity-100' : 'opacity-30'}`}></div>
 

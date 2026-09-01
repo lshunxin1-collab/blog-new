@@ -76,9 +76,7 @@ export default function Navbar() {
     { name: '项目', href: '/projects' },
     { name: '归档', href: '/timeline' },
     { name: '照片', href: '/photowall' },
-    { name: '音乐', href: '/music' },
     { name: '说说', href: '/moments' },
-    { name: '杂谈', href: '/chatter' },
     { name: '关于', href: '/about' },
   ];
 
@@ -89,9 +87,9 @@ export default function Navbar() {
       {/* PC端导航栏 */}
       <header className={`hidden md:block w-full fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${showNav ? 'translate-y-0' : '-translate-y-full'} bg-white/40 dark:bg-slate-900/50 backdrop-blur-xl border-white/20 dark:border-white/5 shadow-sm`}>
         <div className="w-[90%] max-w-6xl mx-auto h-16 flex items-center justify-between px-4 sm:px-[30px] box-border">
-          <Link href="/" className="text-xl font-black text-slate-800 dark:text-white tracking-tighter hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-300">
+          <Link href="/" className="text-xl font-black text-black dark:text-white tracking-tighter hover:text-black-600 dark:hover:text-slate-300 transition-all duration-300">
             {siteConfig.navTitle || siteConfig.authorName}
-            <span className="text-sky-300 mx-1">{siteConfig.navSuffix || 'の'}</span>
+            <span className="text-black dark:text-white mx-1">{siteConfig.navSuffix || 'の'}</span>
             {siteConfig.navAfter}
           </Link>
           <div className="flex items-center gap-5">
@@ -100,9 +98,9 @@ export default function Navbar() {
               {navLinks.map((link) => {
                 const isActive = pathname === link.href || pathname === `${link.href}/`;
                 return (
-                  <Link key={link.href} href={link.href} className={`relative py-1 transition-colors ${isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-700 dark:text-slate-200 hover:text-indigo-600'}`}>
+                  <Link key={link.href} href={link.href} className={`relative py-1 transition-colors ${isActive ? 'text-black-600' : 'text-slate-700 dark:text-slate-200 hover:text-black-600'}`}>
                     {link.name}
-                    {isActive && <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-indigo-500 rounded-full animate-pulse"></span>}
+                    {isActive && <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-black rounded-full animate-pulse"></span>}
                   </Link>
                 );
               })}
