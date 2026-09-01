@@ -145,12 +145,6 @@ export default function MomentList({ moments, authorName, avatarUrl }: any) {
   return (
     <div className="w-[95%] md:w-[90%] max-w-6xl mx-auto py-6 md:py-10 mt-24 md:mt-28 relative z-10 flex-1 flex flex-col min-h-[85vh]">
 
-      <div className="mb-8 md:mb-14 text-center relative">
-        <p className="text-xs md:text-sm text-slate-500 dark:text-slate-400 font-medium italic opacity-80 flex items-center justify-center gap-1.5 md:gap-2">
-          “ 在代码之外捕捉瞬间的温度 ”
-        </p>
-      </div>
-
       <div className="mb-10 md:mb-16 flex flex-col items-center gap-5 md:gap-8">
         <div className="relative w-full max-w-lg group px-2 md:px-0">
           <Search className="w-5 h-5 md:w-6 md:h-6 absolute left-6 md:left-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-black transition-colors z-20 pointer-events-none" />
