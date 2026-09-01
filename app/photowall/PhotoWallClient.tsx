@@ -55,7 +55,7 @@ export default function PhotoWallClient() {
                 </div>
 
                 <div className="relative w-full md:w-80 group">
-                  <svg className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 z-10 pointer-events-none text-slate-500 dark:text-slate-400 group-focus-within:text-indigo-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 z-10 pointer-events-none text-slate-500 dark:text-slate-400 group-focus-within:text-black transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
                   <input
@@ -63,7 +63,7 @@ export default function PhotoWallClient() {
                     placeholder="搜索相册名或照片描述..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full h-12 pl-12 pr-4 bg-white/40 dark:bg-slate-800/40 backdrop-blur-md border border-white/50 dark:border-white/10 rounded-full text-sm text-slate-800 dark:text-white placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 shadow-sm transition-all duration-700"
+                    className="w-full h-12 pl-12 pr-4 bg-white/40 dark:bg-slate-800/40 backdrop-blur-md border border-white/50 dark:border-white/10 rounded-full text-sm text-slate-800 dark:text-white placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-black/50 shadow-sm transition-all duration-700"
                   />
                 </div>
               </div>
@@ -73,7 +73,7 @@ export default function PhotoWallClient() {
                 {activeQuery && matchedPhotos.length > 0 && (
                   <div className="mb-16">
                     <h3 className="text-xl font-bold text-slate-800 dark:text-slate-200 mb-6 flex items-center gap-2">
-                      <span className="w-2 h-6 bg-indigo-500 rounded-full"></span>
+                      <span className="w-2 h-6 bg-black rounded-full"></span>
                       匹配的单张照片 ({matchedPhotos.length})
                     </h3>
                     <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 space-y-6">
@@ -81,11 +81,11 @@ export default function PhotoWallClient() {
                         <div
                           key={`search-photo-${index}`}
                           onClick={() => setSelectedImage(photo)}
-                          className="break-inside-avoid relative group rounded-2xl overflow-hidden cursor-zoom-in shadow-lg bg-white/20 dark:bg-slate-800/20 border border-white/30 dark:border-white/10 transition-transform duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-indigo-500/20"
+                          className="break-inside-avoid relative group rounded-2xl overflow-hidden cursor-zoom-in shadow-lg bg-white/20 dark:bg-slate-800/20 border border-white/30 dark:border-white/10 transition-transform duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-black/20"
                         >
                           <img src={photo.url} alt={photo.caption} className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105" loading="lazy" />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-5">
-                            <span className="text-indigo-300 font-black text-[10px] tracking-widest uppercase mb-1 drop-shadow-md">{photo.albumName}</span>
+                            <span className="text-black font-black text-[10px] tracking-widest uppercase mb-1 drop-shadow-md">{photo.albumName}</span>
                             <p className="text-white font-medium text-sm drop-shadow-md translate-y-4 group-hover:translate-y-0 transition-transform duration-500">{photo.caption}</p>
                           </div>
                         </div>
@@ -96,7 +96,7 @@ export default function PhotoWallClient() {
 
                 {activeQuery && matchedAlbums.length > 0 && (
                   <h3 className="text-xl font-bold text-slate-800 dark:text-slate-200 mb-6 flex items-center gap-2">
-                    <span className="w-2 h-6 bg-purple-500 rounded-full"></span>
+                    <span className="w-2 h-6 bg-black rounded-full"></span>
                     相关相册 ({matchedAlbums.length})
                   </h3>
                 )}
@@ -119,14 +119,14 @@ export default function PhotoWallClient() {
                           <img src={album.cover} alt={album.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-5">
                             <span className="text-white font-bold text-lg drop-shadow-md translate-y-2 group-hover:translate-y-0 transition-transform duration-500">{album.photos.length} 张照片</span>
-                            <span className="text-indigo-300 font-medium text-xs mt-1 drop-shadow-md translate-y-2 group-hover:translate-y-0 transition-transform duration-500 delay-75">Click to Open</span>
+                            <span className="text-black font-medium text-xs mt-1 drop-shadow-md translate-y-2 group-hover:translate-y-0 transition-transform duration-500 delay-75">Click to Open</span>
                           </div>
                         </div>
                       </div>
 
                       <div className="text-center px-4 w-full">
                         <div className="flex items-center justify-center gap-2 mb-1">
-                          <h2 className="text-xl font-bold text-slate-900 dark:text-white transition-colors group-hover:text-indigo-600 dark:group-hover:text-indigo-400">{album.title}</h2>
+                          <h2 className="text-xl font-bold text-slate-900 dark:text-white transition-colors group-hover:text-black dark:group-hover:text-white">{album.title}</h2>
                           <span className="text-[10px] font-black text-slate-500 dark:text-slate-400 bg-white/60 dark:bg-black/30 backdrop-blur-sm px-2 py-0.5 rounded-sm uppercase tracking-wider">{album.date}</span>
                         </div>
                         <p className="text-sm text-slate-600 dark:text-slate-400 line-clamp-1">{album.description}</p>
@@ -166,7 +166,7 @@ export default function PhotoWallClient() {
                 </div>
 
                 <div className="text-sm font-bold text-slate-500 dark:text-slate-400 bg-white/40 dark:bg-slate-800/40 backdrop-blur-md px-5 py-2.5 rounded-2xl border border-white/50 dark:border-white/10 shadow-sm">
-                  共 <span className="text-indigo-500 dark:text-indigo-400 text-lg">{currentAlbum.photos.length}</span> 瞬间
+                  共 <span className="text-black dark:text-white text-lg">{currentAlbum.photos.length}</span> 瞬间
                 </div>
               </div>
 
@@ -175,7 +175,7 @@ export default function PhotoWallClient() {
                   <div
                     key={`${photo.url}-${index}`}
                     onClick={() => setSelectedImage(photo)}
-                    className="break-inside-avoid relative group rounded-2xl overflow-hidden cursor-zoom-in shadow-lg bg-white/20 dark:bg-slate-800/20 border border-white/30 dark:border-white/10 transition-transform duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-indigo-500/20 animate-fade-in-up"
+                    className="break-inside-avoid relative group rounded-2xl overflow-hidden cursor-zoom-in shadow-lg bg-white/20 dark:bg-slate-800/20 border border-white/30 dark:border-white/10 transition-transform duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-black/20 animate-fade-in-up"
                     style={{ animationDelay: `${index * 50}ms` }}
                   >
                     <img src={photo.url} alt={photo.caption || '照片'} className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105" loading="lazy" />

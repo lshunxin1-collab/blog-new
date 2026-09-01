@@ -65,7 +65,7 @@ function SocialBtn({ type, url, onClick }: { type: string, url?: string, onClick
   const content = (
     <div
       onClick={onClick}
-      className="w-10 h-10 rounded-xl bg-white/50 dark:bg-slate-700/50 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:bg-indigo-500 hover:text-white dark:hover:bg-indigo-600 dark:hover:text-white transition-all duration-300 border border-white/40 dark:border-white/10 shadow-sm"
+      className="w-10 h-10 rounded-xl bg-white/50 dark:bg-slate-700/50 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:bg-black hover:text-white dark:hover:bg-black dark:hover:text-white transition-all duration-300 border border-white/40 dark:border-white/10 shadow-sm"
       title={type}
     >
       <SocialIcon type={type} className="w-5 h-5" />

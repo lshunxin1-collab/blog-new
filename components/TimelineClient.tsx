@@ -81,7 +81,7 @@ export default function TimelineClient({ posts: initialPosts, tags }: { posts: a
       <div className="text-center mb-12 relative z-20">
         <h1 className="text-5xl font-black text-slate-900 dark:text-white tracking-tighter mb-4">归档与探索</h1>
         <p className="text-slate-500 dark:text-slate-400 font-medium flex items-center justify-center gap-2 italic">
-          <Sparkles size={16} className="text-indigo-500" /> 总计 {posts.length} 篇研究记录
+          <Sparkles size={16} className="text-black" /> 总计 {posts.length} 篇研究记录
         </p>
       </div>
 
@@ -97,9 +97,9 @@ export default function TimelineClient({ posts: initialPosts, tags }: { posts: a
               setIsDropdownOpen(true);
             }}
             onFocus={() => setIsDropdownOpen(true)}
-            className="w-full bg-white/40 dark:bg-slate-800/40 backdrop-blur-xl border border-white/40 dark:border-white/5 rounded-2xl px-6 py-4 pl-14 text-slate-800 dark:text-white shadow-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all placeholder-slate-400 font-medium relative z-20"
+            className="w-full bg-white/40 dark:bg-slate-800/40 backdrop-blur-xl border border-white/40 dark:border-white/5 rounded-2xl px-6 py-4 pl-14 text-slate-800 dark:text-white shadow-xl focus:outline-none focus:ring-2 focus:ring-black/50 transition-all placeholder-slate-400 font-medium relative z-20"
           />
-          <Search className="w-6 h-6 absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-500 transition-colors z-20" />
+          <Search className="w-6 h-6 absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-black transition-colors z-20" />
 
           <AnimatePresence>
             {isDropdownOpen && searchQuery.trim() !== '' && (
@@ -117,10 +117,10 @@ export default function TimelineClient({ posts: initialPosts, tags }: { posts: a
                         href={`/posts/${post.slug}`}
                         key={post.slug}
                         onClick={() => setIsDropdownOpen(false)}
-                        className="px-6 py-4 hover:bg-indigo-50 dark:hover:bg-indigo-500/10 transition-colors group border-b border-slate-100/50 dark:border-slate-800/50 last:border-0 flex flex-col gap-1.5"
+                        className="px-6 py-4 hover:bg-black dark:hover:bg-black/10 transition-colors group border-b border-slate-100/50 dark:border-slate-800/50 last:border-0 flex flex-col gap-1.5"
                       >
                         <div className="flex items-center justify-between">
-                          <h4 className="text-base font-bold text-slate-800 dark:text-slate-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors line-clamp-1 pr-4">
+                          <h4 className="text-base font-bold text-slate-800 dark:text-slate-200 group-hover:text-black dark:group-hover:text-white transition-colors line-clamp-1 pr-4">
                             {post.title}
                           </h4>
                           <span className="text-[10px] font-mono text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-md shrink-0">
@@ -145,11 +145,11 @@ export default function TimelineClient({ posts: initialPosts, tags }: { posts: a
 
         <div className="w-full flex flex-col md:flex-row justify-between items-center gap-6 bg-white/30 dark:bg-slate-800/30 backdrop-blur-md p-4 rounded-3xl border border-white/20 dark:border-white/5">
           <div className="flex flex-wrap justify-center md:justify-start gap-2 flex-1">
-            <button onClick={() => setSelectedTag('All')} className={`px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 ${selectedTag === 'All' ? 'bg-indigo-500 text-white shadow-md' : 'bg-white/50 dark:bg-slate-700/50 text-slate-600 dark:text-slate-400 hover:bg-white'}`}>
+            <button onClick={() => setSelectedTag('All')} className={`px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 ${selectedTag === 'All' ? 'bg-black text-white shadow-md' : 'bg-white/50 dark:bg-slate-700/50 text-slate-600 dark:text-slate-400 hover:bg-white'}`}>
               全部档案
             </button>
             {tags.map(tag => (
-              <button key={tag.name} onClick={() => setSelectedTag(tag.name)} className={`px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 ${selectedTag === tag.name ? 'bg-indigo-500 text-white shadow-md' : 'bg-white/50 dark:bg-slate-700/50 text-slate-600 dark:text-slate-400 hover:bg-white'}`}>
+              <button key={tag.name} onClick={() => setSelectedTag(tag.name)} className={`px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 ${selectedTag === tag.name ? 'bg-black text-white shadow-md' : 'bg-white/50 dark:bg-slate-700/50 text-slate-600 dark:text-slate-400 hover:bg-white'}`}>
                 {tag.name} <span className="opacity-50 ml-1">{tag.count}</span>
               </button>
             ))}
@@ -157,11 +157,11 @@ export default function TimelineClient({ posts: initialPosts, tags }: { posts: a
 
           {/* 🌟 核心魔法 2：隐藏手机端的视图切换按钮 (hidden md:flex) */}
           <div className="hidden md:flex bg-white/50 dark:bg-slate-900/50 p-1 rounded-2xl shadow-inner shrink-0">
-            <button onClick={() => setViewMode('timeline')} className={`flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-sm transition-all duration-300 ${viewMode === 'timeline' ? 'bg-white dark:bg-slate-700 text-indigo-500 shadow-sm' : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'}`}>
+            <button onClick={() => setViewMode('timeline')} className={`flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-sm transition-all duration-300 ${viewMode === 'timeline' ? 'bg-white dark:bg-slate-700 text-black shadow-sm' : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'}`}>
               <ListTree size={16} />
               <span>中枢链路</span>
             </button>
-            <button onClick={() => setViewMode('card')} className={`flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-sm transition-all duration-300 ${viewMode === 'card' ? 'bg-white dark:bg-slate-700 text-indigo-500 shadow-sm' : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'}`}>
+            <button onClick={() => setViewMode('card')} className={`flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-sm transition-all duration-300 ${viewMode === 'card' ? 'bg-white dark:bg-slate-700 text-black shadow-sm' : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'}`}>
               <LayoutGrid size={16} />
               <span>矩阵网格</span>
             </button>
@@ -184,8 +184,8 @@ export default function TimelineClient({ posts: initialPosts, tags }: { posts: a
           >
             <style dangerouslySetInnerHTML={{ __html: `
               .cyber-scrollbar::-webkit-scrollbar { width: 8px; md:width: 12px; }
-              .cyber-scrollbar::-webkit-scrollbar-track { background: rgba(99, 102, 241, 0.05); border-radius: 12px; margin-top: 20px; margin-bottom: 56px; }
-              .cyber-scrollbar::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #818cf8 0%, #c084fc 100%); border-radius: 12px; border: 2px solid transparent; background-clip: padding-box; }
+              .cyber-scrollbar::-webkit-scrollbar-track { background: rgba(0,0,0, 0.05); border-radius: 12px; margin-top: 20px; margin-bottom: 56px; }
+              .cyber-scrollbar::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #000000 0%, #000000 100%); border-radius: 12px; border: 2px solid transparent; background-clip: padding-box; }
               .fade-edges { -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%); }
             `}} />
 
@@ -213,11 +213,11 @@ export default function TimelineClient({ posts: initialPosts, tags }: { posts: a
 
                         {/* 🌟 文本边距和字号全方位缩放 */}
                         <div className="p-3 md:p-5 flex-1 flex flex-col">
-                          <h3 className="text-xs sm:text-sm md:text-lg font-bold text-slate-800 dark:text-slate-100 mb-1 md:mb-2 line-clamp-2 transition-colors group-hover:text-indigo-500">{post.title}</h3>
+                          <h3 className="text-xs sm:text-sm md:text-lg font-bold text-slate-800 dark:text-slate-100 mb-1 md:mb-2 line-clamp-2 transition-colors group-hover:text-black">{post.title}</h3>
                           <p className="text-[10px] sm:text-xs md:text-sm text-slate-500 dark:text-slate-400 mb-2 md:mb-4 line-clamp-2 flex-1 leading-snug">{post.description || "暂时没有描述喵..."}</p>
                           <div className="flex flex-wrap gap-1 sm:gap-2 mt-auto">
                             {post.tags.map((tag: string) => (
-                              <span key={tag} className="text-[8px] md:text-[10px] font-bold text-indigo-500 bg-indigo-50 dark:bg-indigo-500/10 px-1.5 py-0.5 md:px-2 md:py-1 rounded">#{tag}</span>
+                              <span key={tag} className="text-[8px] md:text-[10px] font-bold text-black bg-black dark:bg-black/10 px-1.5 py-0.5 md:px-2 md:py-1 rounded">#{tag}</span>
                             ))}
                           </div>
                         </div>
@@ -237,7 +237,7 @@ export default function TimelineClient({ posts: initialPosts, tags }: { posts: a
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.5, y: 10 }}
                   onClick={scrollToTop}
-                  className="absolute bottom-4 -right-3 w-9 h-9 flex items-center justify-center bg-gradient-to-t from-purple-500 to-indigo-500 text-white rounded-full shadow-lg shadow-purple-500/40 hover:shadow-purple-500/60 hover:-translate-y-1 transition-all z-50 group pointer-events-auto"
+                  className="absolute bottom-4 -right-3 w-9 h-9 flex items-center justify-center bg-gradient-to-t from-black to-black text-white rounded-full shadow-lg shadow-black/40 hover:shadow-black/60 hover:-translate-y-1 transition-all z-50 group pointer-events-auto"
                   title="回到顶部"
                 >
                   <ArrowUp size={18} className="group-hover:-translate-y-1 transition-transform" />
@@ -258,7 +258,7 @@ export default function TimelineClient({ posts: initialPosts, tags }: { posts: a
             transition={{ duration: 0.3 }}
             className="relative overflow-hidden p-2 md:p-10 min-h-[500px]"
           >
-            <div className="absolute border-opacity-20 border-indigo-500 dark:border-indigo-400/20 h-full border-2 left-1/2 transform -translate-x-1/2 rounded-full transition-colors duration-1000"></div>
+            <div className="absolute border-opacity-20 border-black dark:border-black/20 h-full border-2 left-1/2 transform -translate-x-1/2 rounded-full transition-colors duration-1000"></div>
 
             <div className="relative z-10 flex flex-col gap-16">
               <AnimatePresence mode='popLayout'>

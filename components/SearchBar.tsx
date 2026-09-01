@@ -74,7 +74,7 @@ export default function SearchBar({ posts = [] }: { posts: Post[] }) {
         {/* 先渲染 Input */}
         <input
           type="text"
-          className="w-full pl-14 pr-6 py-4 bg-white/50 dark:bg-slate-800/50 backdrop-blur-xl border border-white/40 dark:border-white/10 rounded-3xl shadow-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/50 text-slate-800 dark:text-slate-200 transition-all placeholder-slate-500 dark:placeholder-slate-400 font-medium text-lg relative z-0"
+          className="w-full pl-14 pr-6 py-4 bg-white/50 dark:bg-slate-800/50 backdrop-blur-xl border border-white/40 dark:border-white/10 rounded-3xl shadow-xl focus:outline-none focus:ring-2 focus:ring-black/50 text-slate-800 dark:text-slate-200 transition-all placeholder-slate-500 dark:placeholder-slate-400 font-medium text-lg relative z-0"
           placeholder="搜寻标题、描述或标签..."
           value={searchQuery}
           onChange={(e) => {
@@ -96,7 +96,7 @@ export default function SearchBar({ posts = [] }: { posts: Post[] }) {
             strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="w-5 h-5 text-slate-400 group-focus-within:text-indigo-500 transition-colors drop-shadow-sm"
+            className="w-5 h-5 text-slate-400 group-focus-within:text-black transition-colors drop-shadow-sm"
           >
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -121,7 +121,7 @@ export default function SearchBar({ posts = [] }: { posts: Post[] }) {
                     href={`/posts/${post.slug}`}
                     key={post.slug}
                     onClick={() => setIsOpen(false)}
-                    className="px-6 py-5 hover:bg-indigo-50/80 dark:hover:bg-indigo-500/10 transition-colors group border-b border-slate-100/50 dark:border-slate-800/50 last:border-0 flex flex-col gap-2"
+                    className="px-6 py-5 hover:bg-black/80 dark:hover:bg-black/10 transition-colors group border-b border-slate-100/50 dark:border-slate-800/50 last:border-0 flex flex-col gap-2"
                   >
                     <div className="flex items-start justify-between gap-4">
                       <h4 className="text-lg font-bold text-slate-800 dark:text-slate-200 transition-colors line-clamp-1">
@@ -163,7 +163,7 @@ export default function SearchBar({ posts = [] }: { posts: Post[] }) {
                   </svg>
                 </div>
                 <p className="text-slate-500 dark:text-slate-400 font-medium">
-                  数据海中未发现关于 "<span className="text-indigo-500 font-bold">{searchQuery}</span>" 的踪迹
+                  数据海中未发现关于 "<span className="text-black font-bold">{searchQuery}</span>" 的踪迹
                 </p>
               </div>
             )}

@@ -55,7 +55,7 @@ export default function LyricBar() {
         }
       `}</style>
 
-      <div className="w-full rounded-3xl bg-white/70 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200 dark:border-white/10 shadow-2xl p-5 flex items-center justify-between transition-all duration-700 hover:shadow-indigo-500/20 group h-20">
+      <div className="w-full rounded-3xl bg-white/70 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200 dark:border-white/10 shadow-2xl p-5 flex items-center justify-between transition-all duration-700 hover:shadow-black/20 group h-20">
 
         {/* 1. 音频波形动态部分：改用统一渲染逻辑实现过渡 */}
         <div className="flex items-end justify-center gap-[4px] h-8 w-16">
@@ -80,7 +80,7 @@ export default function LyricBar() {
         <div className="flex-1 px-8 flex justify-center items-center overflow-hidden">
           <p className="text-slate-800 dark:text-white text-lg font-bold tracking-widest truncate">
             {displayedLyric}
-            <span className="inline-block w-[3px] h-5 bg-indigo-400 align-middle ml-1 shadow-[0_0_8px_rgba(99,102,241,0.8)] animate-cursor"></span>
+            <span className="inline-block w-[3px] h-5 bg-black align-middle ml-1 shadow-[0_0_8px_rgba(0,0,0,0.8)] animate-cursor"></span>
           </p>
         </div>
 

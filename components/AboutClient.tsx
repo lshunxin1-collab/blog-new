@@ -115,9 +115,9 @@ export default function AboutClient({
 
   const getTypeColor = (type: string) => {
     switch(type) {
-      case '文章': return 'text-indigo-600 dark:text-indigo-400';
-      case '杂谈': return 'text-purple-600 dark:text-purple-400';
-      case '说说': return 'text-pink-600 dark:text-pink-400';
+      case '文章': return 'text-black dark:text-white';
+      case '杂谈': return 'text-black dark:text-white';
+      case '说说': return 'text-black dark:text-white';
       default: return 'text-slate-500 dark:text-slate-400';
     }
   };
@@ -139,19 +139,19 @@ export default function AboutClient({
         <div className="mt-4 md:mt-6 mb-6 md:mb-8 relative flex flex-col md:flex-row md:items-end justify-between gap-5 md:gap-4">
           <div className="text-center md:text-left">
             <h1 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight mb-1 md:mb-3 transition-colors duration-700">关于我</h1>
-            <p className="text-sm md:text-lg text-indigo-600 dark:text-indigo-400 font-bold tracking-widest uppercase transition-colors duration-700">Hello World, I'm {siteConfig.authorName}</p>
+            <p className="text-sm md:text-lg text-black dark:text-white font-bold tracking-widest uppercase transition-colors duration-700">Hello World, I'm {siteConfig.authorName}</p>
           </div>
 
           <div className="flex items-center w-full md:w-auto gap-1 bg-white/50 dark:bg-slate-900/50 p-1 md:p-1.5 rounded-xl md:rounded-2xl shadow-inner border border-white/40 dark:border-white/5">
             <button
               onClick={() => handleTabChange('intro')}
-              className={`flex-1 md:flex-none px-4 md:px-6 py-2 md:py-2 rounded-lg md:rounded-xl text-xs md:text-sm font-black transition-all duration-300 ${activeTab === 'intro' ? 'bg-indigo-500 text-white shadow-md' : 'text-slate-500 hover:text-indigo-500'}`}
+              className={`flex-1 md:flex-none px-4 md:px-6 py-2 md:py-2 rounded-lg md:rounded-xl text-xs md:text-sm font-black transition-all duration-300 ${activeTab === 'intro' ? 'bg-black text-white shadow-md' : 'text-slate-500 hover:text-black'}`}
             >
               自我介绍
             </button>
             <button
               onClick={() => handleTabChange('activity')}
-              className={`flex-1 md:flex-none px-4 md:px-6 py-2 md:py-2 rounded-lg md:rounded-xl text-xs md:text-sm font-black transition-all duration-300 ${activeTab === 'activity' ? 'bg-indigo-500 text-white shadow-md' : 'text-slate-500 hover:text-indigo-500'}`}
+              className={`flex-1 md:flex-none px-4 md:px-6 py-2 md:py-2 rounded-lg md:rounded-xl text-xs md:text-sm font-black transition-all duration-300 ${activeTab === 'activity' ? 'bg-black text-white shadow-md' : 'text-slate-500 hover:text-black'}`}
             >
               研究动态
             </button>
@@ -190,8 +190,8 @@ export default function AboutClient({
                   }
                   
                   .prose code::before, .prose code::after { content: none !important; }
-                  .prose p code, .prose li code { background-color: rgba(99, 102, 241, 0.1) !important; color: #6366f1 !important; padding: 0.1rem 0.3rem !important; border-radius: 0.25rem !important; font-weight: 600 !important; font-size: 0.85em !important; }
-                  .dark .prose p code, .dark .prose li code { background-color: rgba(99, 102, 241, 0.2) !important; color: #818cf8 !important; }
+                  .prose p code, .prose li code { background-color: rgba(0,0,0, 0.1) !important; color: #000000 !important; padding: 0.1rem 0.3rem !important; border-radius: 0.25rem !important; font-weight: 600 !important; font-size: 0.85em !important; }
+                  .dark .prose p code, .dark .prose li code { background-color: rgba(0,0,0, 0.2) !important; color: #000000 !important; }
                   .prose img { display: block !important; margin: 1.5rem auto !important; border-radius: 1rem !important; box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important; max-width: 100% !important; height: auto !important; }
 
                   .prose pre code .hljs-comment, .prose pre code .hljs-quote { color: #5c6370 !important; font-style: italic !important; }
@@ -269,7 +269,7 @@ export default function AboutClient({
                                 <div
                                   key={j}
                                   title={`${dateKey}: ${count} 次更新`}
-                                  className={`w-[11px] h-[11px] md:w-[13px] md:h-[13px] rounded-[3px] transition-colors duration-300 hover:ring-2 hover:ring-indigo-500/50 ${getColorClass(count)}`}
+                                  className={`w-[11px] h-[11px] md:w-[13px] md:h-[13px] rounded-[3px] transition-colors duration-300 hover:ring-2 hover:ring-black/50 ${getColorClass(count)}`}
                                 ></div>
                               );
                             })}
@@ -292,14 +292,14 @@ export default function AboutClient({
                 </div>
               </div>
 
-              <div className="relative pl-6 md:pl-8 border-l-2 border-indigo-500/20 dark:border-indigo-400/20 space-y-6 md:space-y-8">
+              <div className="relative pl-6 md:pl-8 border-l-2 border-black/20 dark:border-black/20 space-y-6 md:space-y-8">
                 {activities.map((act, index) => {
                   const isMoment = act.type === '说说';
                   const targetUrl = isMoment ? '/moments' : act.url;
 
                   return (
                     <div key={index} className="relative group">
-                      <div className="absolute -left-[31px] md:-left-[39px] top-1/2 -translate-y-1/2 w-3 h-3 md:w-4 md:h-4 bg-white dark:bg-slate-800 border-2 border-indigo-500 rounded-full group-hover:scale-125 transition-transform duration-300 z-10"></div>
+                      <div className="absolute -left-[31px] md:-left-[39px] top-1/2 -translate-y-1/2 w-3 h-3 md:w-4 md:h-4 bg-white dark:bg-slate-800 border-2 border-black rounded-full group-hover:scale-125 transition-transform duration-300 z-10"></div>
 
                       <Link
                         href={targetUrl}
@@ -326,7 +326,7 @@ export default function AboutClient({
                           <>
                             <div className="hidden md:block w-px h-8 bg-slate-300 dark:bg-slate-600 mx-2 shrink-0"></div>
                             <div className="flex-1 min-w-0">
-                              <div className="text-sm md:text-base font-black text-slate-800 dark:text-white truncate group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                              <div className="text-sm md:text-base font-black text-slate-800 dark:text-white truncate group-hover:text-black dark:group-hover:text-white transition-colors">
                                 《{act.title}》
                               </div>
                             </div>

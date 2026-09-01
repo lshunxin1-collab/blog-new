@@ -34,7 +34,7 @@ export default function CloudPlayer() {
   if (isLoading) {
     return (
       <div className="h-full w-full rounded-3xl bg-white/40 dark:bg-slate-800/50 backdrop-blur-md border border-white/40 dark:border-white/10 shadow-xl p-6 flex flex-col items-center justify-center transition-colors duration-700">
-        <div className="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+        <div className="w-10 h-10 border-4 border-black border-t-transparent rounded-full animate-spin mb-4"></div>
         <span className="text-slate-800 dark:text-white font-bold tracking-widest animate-pulse text-sm">CONNECTING...</span>
       </div>
     );
@@ -89,7 +89,7 @@ export default function CloudPlayer() {
       <div
         className="h-full w-full rounded-3xl bg-white/40 dark:bg-slate-800/50 backdrop-blur-md border border-white/40 dark:border-white/10 shadow-xl p-6 flex flex-col justify-between transition-all duration-700 relative group overflow-hidden"
       >
-        <div className={`absolute -top-20 -right-20 w-48 h-48 bg-indigo-500/20 blur-[50px] rounded-full transition-opacity duration-1000 ${isPlaying ? 'opacity-100' : 'opacity-30'}`}></div>
+        <div className={`absolute -top-20 -right-20 w-48 h-48 bg-black/20 blur-[50px] rounded-full transition-opacity duration-1000 ${isPlaying ? 'opacity-100' : 'opacity-30'}`}></div>
 
         <div className="flex items-center gap-5 relative z-10 mb-6 mt-2">
           <div
@@ -106,7 +106,7 @@ export default function CloudPlayer() {
 
           <div className="flex-col overflow-hidden w-full">
             <div className="flex items-center justify-between mb-1">
-              <span className="text-[10px] font-black text-indigo-500 dark:text-indigo-400 tracking-widest uppercase bg-white/50 dark:bg-slate-900/50 px-2 py-0.5 rounded-sm shadow-sm transition-colors duration-700">Cloud Music</span>
+              <span className="text-[10px] font-black text-black dark:text-white tracking-widest uppercase bg-white/50 dark:bg-slate-900/50 px-2 py-0.5 rounded-sm shadow-sm transition-colors duration-700">Cloud Music</span>
             </div>
             <h3 className="text-xl font-bold text-slate-900 dark:text-white truncate drop-shadow-sm transition-colors duration-700">{currentSong.title}</h3>
             <p className="text-sm text-slate-700 dark:text-slate-300 font-medium truncate drop-shadow-sm transition-colors duration-700">{currentSong.artist}</p>
@@ -137,7 +137,7 @@ export default function CloudPlayer() {
 
           {/* 🌟 核心拦截：使用我们上面写的 safe 函数，阻止事件冒泡 */}
           <div className="flex items-center justify-center gap-6">
-            <button onClick={safePrevSong} className="text-slate-700 dark:text-slate-300 hover:text-sky-200 dark:hover:text-indigo-400 transition-colors drop-shadow-sm relative z-20">
+            <button onClick={safePrevSong} className="text-slate-700 dark:text-slate-300 hover:text-sky-200 dark:hover:text-white transition-colors drop-shadow-sm relative z-20">
                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
             </button>
 
@@ -145,7 +145,7 @@ export default function CloudPlayer() {
               {isPlaying ? <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg> : <svg className="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>}
             </button>
 
-            <button onClick={safeNextSong} className="text-slate-700 dark:text-slate-300 hover:text-sky-200 dark:hover:text-indigo-400 transition-colors drop-shadow-sm relative z-20">
+            <button onClick={safeNextSong} className="text-slate-700 dark:text-slate-300 hover:text-sky-200 dark:hover:text-white transition-colors drop-shadow-sm relative z-20">
                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
             </button>
           </div>

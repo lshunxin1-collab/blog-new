@@ -19,7 +19,7 @@ export default function TimelineNode({ post, index }: { post: any, index: number
       <div className="order-1 w-5/12 hidden md:block"></div>
 
       {/* 中间的圆形节点 */}
-      <div className="z-20 flex items-center justify-center order-1 bg-white dark:bg-slate-900 shadow-xl w-6 h-6 rounded-full border-4 border-indigo-400 ring-4 ring-indigo-200/50 dark:ring-indigo-900/30 transition-colors duration-1000"></div>
+      <div className="z-20 flex items-center justify-center order-1 bg-white dark:bg-slate-900 shadow-xl w-6 h-6 rounded-full border-4 border-black ring-4 ring-black/50 dark:ring-black/30 transition-colors duration-1000"></div>
 
       {/* 卡片实体 */}
       <Link href={`/posts/${post.slug}`} className="order-1 w-full md:w-5/12 group">
@@ -38,13 +38,13 @@ export default function TimelineNode({ post, index }: { post: any, index: number
           {/* 下半部分：文本信息 */}
           <div className="p-6">
             <div className="flex items-center justify-between mb-3">
-              <div className="text-indigo-600 dark:text-indigo-400 font-bold text-[11px] flex items-center gap-1 uppercase tracking-wider">
+              <div className="text-black dark:text-white font-bold text-[11px] flex items-center gap-1 uppercase tracking-wider">
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 {post.date}
               </div>
             </div>
 
-            <h3 className="font-bold text-lg text-slate-800 dark:text-white mb-3 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors line-clamp-2 leading-tight">
+            <h3 className="font-bold text-lg text-slate-800 dark:text-white mb-3 group-hover:text-black dark:group-hover:text-white transition-colors line-clamp-2 leading-tight">
               {post.title}
             </h3>
 
@@ -54,7 +54,7 @@ export default function TimelineNode({ post, index }: { post: any, index: number
                 {post.tags.map((tag: string) => (
                   <span
                     key={tag}
-                    className="px-2 py-0.5 rounded-md text-[10px] font-black bg-indigo-500/10 text-indigo-600 dark:bg-indigo-400/10 dark:text-indigo-400 border border-indigo-500/10 dark:border-indigo-400/10"
+                    className="px-2 py-0.5 rounded-md text-[10px] font-black bg-black/10 text-black dark:bg-black/10 dark:text-white border border-black/10 dark:border-black/10"
                   >
                     #{tag}
                   </span>

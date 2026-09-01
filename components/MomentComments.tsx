@@ -87,20 +87,20 @@ export default function MomentComments({ id }: MomentCommentsProps) {
           onChange={(e) => setNickname(e.target.value)}
           placeholder="昵称（选填）"
           maxLength={20}
-          className="w-full md:w-1/2 bg-white/70 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
+          className="w-full md:w-1/2 bg-white/70 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-black"
         />
         <textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder="说点什么吧，不需要登录～"
           rows={2}
-          className="w-full bg-white/70 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-sm outline-none resize-none focus:ring-2 focus:ring-indigo-500"
+          className="w-full bg-white/70 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-sm outline-none resize-none focus:ring-2 focus:ring-black"
         />
         {error && <p className="text-xs text-amber-500 font-medium">{error}</p>}
         <div className="flex justify-end">
           <button
             onClick={handleSubmit}
-            className="px-4 py-1.5 rounded-lg bg-indigo-500 hover:bg-indigo-600 text-white text-xs font-bold transition-colors"
+            className="px-4 py-1.5 rounded-lg bg-black hover:bg-black text-white text-xs font-bold transition-colors"
           >
             留言
           </button>

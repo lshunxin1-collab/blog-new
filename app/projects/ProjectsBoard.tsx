@@ -46,7 +46,7 @@ export default function ProjectsBoard() {
             placeholder="搜索项目名称、描述或技术栈..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-white/40 dark:bg-slate-800/50 backdrop-blur-md border border-white/40 dark:border-white/10 rounded-full px-6 py-3 pl-12 text-slate-800 dark:text-white shadow-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all placeholder-slate-500 font-serif"
+            className="w-full bg-white/40 dark:bg-slate-800/50 backdrop-blur-md border border-white/40 dark:border-white/10 rounded-full px-6 py-3 pl-12 text-slate-800 dark:text-white shadow-xl focus:outline-none focus:ring-2 focus:ring-black transition-all placeholder-slate-500 font-serif"
           />
           <svg className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -71,15 +71,15 @@ export default function ProjectsBoard() {
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block h-full rounded-3xl bg-white/60 dark:bg-slate-800/50 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-xl overflow-hidden hover:shadow-indigo-500/20 transition-all duration-700 hover:-translate-y-1 group relative p-6 md:p-8"
+                className="block h-full rounded-3xl bg-white/60 dark:bg-slate-800/50 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-xl overflow-hidden hover:shadow-black/20 transition-all duration-700 hover:-translate-y-1 group relative p-6 md:p-8"
               >
                 {/* 装饰性光晕 */}
-                <div className="absolute -top-10 -right-10 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl group-hover:bg-indigo-500/20 transition-colors duration-700"></div>
+                <div className="absolute -top-10 -right-10 w-32 h-32 bg-black/10 rounded-full blur-2xl group-hover:bg-black/20 transition-colors duration-700"></div>
 
                 <div className="flex items-start justify-between mb-4 relative z-10">
                   <div className="flex items-center gap-4">
                     <span className="text-4xl">{project.icon}</span>
-                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-black dark:group-hover:text-white transition-colors">
                       {project.name}
                     </h2>
                   </div>
@@ -95,7 +95,7 @@ export default function ProjectsBoard() {
 
                 <div className="flex flex-wrap gap-2 relative z-10 mt-auto">
                   {project.tags.map(tag => (
-                    <span key={tag} className="text-[10px] font-bold tracking-wider uppercase text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-md shadow-sm border border-indigo-500/20">
+                    <span key={tag} className="text-[10px] font-bold tracking-wider uppercase text-black dark:text-white bg-black/10 px-3 py-1 rounded-md shadow-sm border border-black/20">
                       {tag}
                     </span>
                   ))}
