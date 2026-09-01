@@ -148,7 +148,7 @@ export default function MomentList({ moments, authorName, avatarUrl }: any) {
       <div className="mb-8 md:mb-14 text-center relative">
         <motion.h1 initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white mb-2 md:mb-4 tracking-tighter">生活动态</motion.h1>
         <p className="text-xs md:text-sm text-slate-500 dark:text-slate-400 font-medium italic opacity-80 flex items-center justify-center gap-1.5 md:gap-2">
-          <Sparkles size={12} className="md:w-3.5 md:h-3.5 text-black" /> “ 在代码之外捕捉瞬间的温度 ”
+          “ 在代码之外捕捉瞬间的温度 ”
         </p>
       </div>
 
