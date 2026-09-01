@@ -21,7 +21,7 @@ export default function ProfileCard({ postCount, chatterCount, photoCount }: { p
     >
       <div className="flex items-start justify-between relative z-10">
         <div className="flex items-center gap-6">
-          <div className="w-24 h-24 rounded-2xl bg-gradient-to-tr from-indigo-500 to-purple-500 p-1 shadow-lg flex-shrink-0 transition-transform duration-500 group-hover:rotate-3">
+          <div className="w-24 h-24 rounded-2xl bg-gradient-to-tr from-white to-slate-200 p-1 shadow-lg flex-shrink-0 transition-transform duration-500 group-hover:rotate-3">
             <img src={siteConfig.avatarUrl} alt="avatar" className="w-full h-full rounded-xl object-cover bg-white" />
           </div>
           <div>

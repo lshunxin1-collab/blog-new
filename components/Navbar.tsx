@@ -91,7 +91,7 @@ export default function Navbar() {
         <div className="w-[90%] max-w-6xl mx-auto h-16 flex items-center justify-between px-4 sm:px-[30px] box-border">
           <Link href="/" className="text-xl font-black text-slate-800 dark:text-white tracking-tighter hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-300">
             {siteConfig.navTitle || siteConfig.authorName}
-            <span className="text-indigo-500 mx-1">{siteConfig.navSuffix || 'の'}</span>
+            <span className="text-sky-300 mx-1">{siteConfig.navSuffix || 'の'}</span>
             {siteConfig.navAfter}
           </Link>
           <div className="flex items-center gap-5">
