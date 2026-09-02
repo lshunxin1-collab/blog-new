@@ -14,6 +14,7 @@ import LyricBar from '../components/LyricBar';
 import { ToastProvider } from '../components/ToastProvider';
 
 import LatestPostsCarousel from '../components/LatestPostsCarousel';
+import VisitCounter from '../components/VisitCounter';
 
 function formatUpdateTime(dateString: string) {
   if (!dateString || dateString === '1970-01-01') return '刚刚更新';
@@ -113,6 +114,9 @@ export default function Home() {
               </div>
 
             </main>
+
+            {/* 主页底部：观看统计量 */}
+            <VisitCounter />
           </div>
         </PageTransition>
       </div>
