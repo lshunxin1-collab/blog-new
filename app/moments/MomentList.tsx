@@ -15,6 +15,27 @@ function timeAgo(dateStr: string) {
   return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`;
 }
 
+// 🌟 把内容里的网址自动转成可点击的超链接，支持 [文字](网址) 和裸 URL
+function renderContent(content: string) {
+  const regex = /(\[[^\]]+\]\(https?:\/\/[^\s)]+\)|https?:\/\/[^\s，。！？；：、）】》"'」』]+)/g;
+  const parts = String(content || '').split(regex);
+  return parts.map((part, i) => {
+    if (!part) return null;
+    const md = part.match(/^\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)$/);
+    if (md) {
+      return (
+        <a key={i} href={md[2]} target="_blank" rel="noopener noreferrer" className="text-[#576b95] dark:text-[#7f99cc] underline underline-offset-2 font-semibold hover:opacity-75 break-all">{md[1]}</a>
+      );
+    }
+    if (/^https?:\/\//.test(part)) {
+      return (
+        <a key={i} href={part} target="_blank" rel="noopener noreferrer" className="text-[#576b95] dark:text-[#7f99cc] underline underline-offset-2 font-semibold hover:opacity-75 break-all">{part}</a>
+      );
+    }
+    return <span key={i}>{part}</span>;
+  });
+}
+
 export default function MomentList({ moments, authorName, avatarUrl }: any) {
   const [openCommentId, setOpenCommentId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
@@ -110,7 +131,7 @@ export default function MomentList({ moments, authorName, avatarUrl }: any) {
         </div>
       </div>
 
-      <p className="text-slate-800 dark:text-slate-200 text-[14px] md:text-[16px] leading-relaxed whitespace-pre-wrap font-medium break-words">{moment.content}</p>
+      <p className="text-slate-800 dark:text-slate-200 text-[14px] md:text-[16px] leading-relaxed whitespace-pre-wrap font-medium break-words">{renderContent(moment.content)}</p>
 
       {renderImages(moment.images)}
 
