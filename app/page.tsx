@@ -15,7 +15,7 @@ import { ToastProvider } from '../components/ToastProvider';
 
 import LatestPostsCarousel from '../components/LatestPostsCarousel';
 import { featuredMomentIds, featuredPhotoUrls, featuredAlbumId } from '../data/featured';
-import LazyImg from '../components/LazyImg';
+import FeaturedGallery from '../components/FeaturedGallery';
 
 function formatUpdateTime(dateString: string) {
   if (!dateString || dateString === '1970-01-01') return '刚刚更新';
@@ -140,51 +140,7 @@ export default function Home() {
               </div>
 
               {/* 主页精选：说说 + 图片 */}
-              {(featuredMoments.length > 0 || featuredPhotos.length > 0) && (
-                <div className="w-full flex flex-col gap-8 mt-2">
-                  {featuredMoments.length > 0 && (
-                    <section className="w-full">
-                      <div className="flex items-center gap-2 mb-4">
-                        <h2 className="text-lg sm:text-xl font-black text-slate-800 dark:text-white">精选说说</h2>
-                        <Link href="/moments" className="text-xs text-slate-400 hover:text-indigo-500 font-bold ml-auto">全部说说 →</Link>
-                      </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {featuredMoments.map((m: any) => (
-                          <div key={m.id} className="rounded-3xl bg-white/40 dark:bg-slate-800/50 backdrop-blur-md border border-white/40 dark:border-white/10 shadow-lg p-5 flex flex-col gap-3">
-                            <span className="text-[11px] font-bold text-slate-400">
-                              {m.date ? new Date(m.date).toLocaleDateString('zh-CN') : ''}{m.location ? ` · ${m.location}` : ''}
-                            </span>
-                            <p className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed whitespace-pre-wrap line-clamp-4">{m.content}</p>
-                            {m.images && m.images.length > 0 && (
-                              <div className="grid grid-cols-3 gap-2 mt-auto">
-                                {m.images.slice(0, 3).map((img: any) => (
-                                  <LazyImg key={img} src={img} alt="" className="w-full h-20 object-cover rounded-xl" />
-                                ))}
-                              </div>
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    </section>
-                  )}
-
-                  {featuredPhotos.length > 0 && (
-                    <section className="w-full">
-                      <div className="flex items-center gap-2 mb-4">
-                        <h2 className="text-lg sm:text-xl font-black text-slate-800 dark:text-white">精选图片</h2>
-                        <Link href="/photowall" className="text-xs text-slate-400 hover:text-indigo-500 font-bold ml-auto">全部照片 →</Link>
-                      </div>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-                        {featuredPhotos.map((url: string) => (
-                          <Link key={url} href="/photowall" className="aspect-square rounded-2xl overflow-hidden border border-white/40 dark:border-white/10 shadow-md group">
-                            <LazyImg src={url} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                          </Link>
-                        ))}
-                      </div>
-                    </section>
-                  )}
-                </div>
-              )}
+              <FeaturedGallery moments={featuredMoments} photos={featuredPhotos} />
 
             </main>
           </div>
