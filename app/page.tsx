@@ -16,6 +16,7 @@ import { ToastProvider } from '../components/ToastProvider';
 import LatestPostsCarousel from '../components/LatestPostsCarousel';
 import { featuredMomentIds, featuredPhotoUrls, featuredAlbumId } from '../data/featured';
 import FeaturedGallery from '../components/FeaturedGallery';
+import VisitCounter from '../components/VisitCounter';
 
 function formatUpdateTime(dateString: string) {
   if (!dateString || dateString === '1970-01-01') return '刚刚更新';
@@ -152,6 +153,8 @@ export default function Home() {
               <FeaturedGallery moments={featuredMoments} photos={featuredPhotos} />
 
             </main>
+
+            <VisitCounter />
           </div>
         </PageTransition>
       </div>
