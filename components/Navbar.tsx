@@ -135,7 +135,7 @@ export default function Navbar() {
                 </nav>
 
                 <button
-                  onClick={toggleTheme}
+                  onClick={() => { toggleTheme(); setIsMobileMenuOpen(false); }}
                   className="mt-3 w-full py-3 rounded-2xl bg-white/60 dark:bg-slate-700/50 border border-white/50 dark:border-slate-600 text-slate-700 dark:text-slate-200 text-sm font-bold flex items-center justify-center gap-2 active:scale-95 transition-all"
                 >
                   {isDark ? <Sun size={16} /> : <Moon size={16} />}

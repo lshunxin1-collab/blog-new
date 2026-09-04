@@ -29,7 +29,17 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       }
     };
 
-    // 手机端：直接跟随系统主题（白天系统显示白色，夜间系统显示深色）
+    const savedTheme = localStorage.getItem('blog-theme');
+
+    // 用户手动切换过：直接使用用户设置（手机端、桌面端通用）
+    if (savedTheme) {
+      const isDarkMode = savedTheme === 'dark';
+      setIsDark(isDarkMode);
+      applyTheme(isDarkMode);
+      return;
+    }
+
+    // 手机端且从未手动设置过：跟随系统主题
     if (isMobileDevice()) {
       const mq = window.matchMedia('(prefers-color-scheme: dark)');
       const dark = mq.matches;
@@ -44,12 +54,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       return () => mq.removeEventListener('change', handler);
     }
 
-    // 桌面端：从 localStorage 读取真实状态
-    const savedTheme = localStorage.getItem('blog-theme');
-    // 如果没有记录，默认给深色模式（流萤飞舞）
-    const isDarkMode = savedTheme !== 'light';
-    setIsDark(isDarkMode);
-    applyTheme(isDarkMode);
+    // 桌面端：没有记录时默认深色模式（流萤飞舞）
+    setIsDark(true);
+    applyTheme(true);
   }, []);
 
   // 极其重要：监听 isDark 状态，只要它变了，立刻强制更新 html 标签，防止路由切换丢失
@@ -64,8 +71,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   }, [isDark, mounted]);
 
   const toggleTheme = () => {
-    // 手机端跟随系统，不允许手动切换
-    if (isMobileDevice()) return;
     const newDark = !isDark;
     setIsDark(newDark);
     localStorage.setItem('blog-theme', newDark ? 'dark' : 'light');
