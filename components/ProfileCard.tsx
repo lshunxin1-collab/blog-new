@@ -5,7 +5,7 @@ import { siteConfig } from '../siteConfig';
 import { useToast } from './ToastProvider';
 import SocialIcon from './SocialIcon';
 
-export default function ProfileCard({ postCount, photoCount }: { postCount: number, photoCount: number }) {
+export default function ProfileCard({ postCount, momentCount, photoCount }: { postCount: number, momentCount: number, photoCount: number }) {
   const router = useRouter();
   const { showToast } = useToast();
 
@@ -35,6 +35,8 @@ export default function ProfileCard({ postCount, photoCount }: { postCount: numb
         {/* 数据统计区 */}
         <div className="flex gap-6 w-full md:w-auto justify-around md:justify-start">
           <StatItem count={postCount} label="文章" color="text-dark-300 dark:text-dark-400" />
+          <div className="w-px h-10 bg-slate-300/50 dark:bg-slate-700 hidden md:block"></div>
+          <StatItem count={momentCount} label="说说" color="text-dark-300 dark:text-dark-400" />
           <div className="w-px h-10 bg-slate-300/50 dark:bg-slate-700 hidden md:block"></div>
           <StatItem count={photoCount} label="照片" color="text-dark-300 dark:text-dark-400" />
         </div>

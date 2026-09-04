@@ -89,6 +89,15 @@ export default function Home() {
 
   const featuredPhotos = featuredPhotoUrls;
 
+  // 说说总数（用于个人卡片统计）
+  let momentCount = 0;
+  try {
+    const momentsDir = path.join(process.cwd(), 'moments');
+    if (fs.existsSync(momentsDir)) {
+      momentCount = fs.readdirSync(momentsDir).filter(f => f.endsWith('.md')).length;
+    }
+  } catch (e) {}
+
   return (
     <ToastProvider>
       <div className="min-h-screen relative pb-10">
@@ -104,7 +113,7 @@ export default function Home() {
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 w-full">
                 {/* 手机上占满1列，电脑上占7列 */}
                 <div className="col-span-1 lg:col-span-7 flex flex-col">
-                    <ProfileCard postCount={allPosts.length} photoCount={realPhotoCount}/>
+                    <ProfileCard postCount={allPosts.length} momentCount={momentCount} photoCount={realPhotoCount}/>
                 </div>
                 {/* 手机上占满1列，电脑上占5列 */}
                 <div className="col-span-1 lg:col-span-5 flex flex-col">
