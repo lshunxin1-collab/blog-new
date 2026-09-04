@@ -15,6 +15,7 @@ import { ToastProvider } from '../components/ToastProvider';
 
 import LatestPostsCarousel from '../components/LatestPostsCarousel';
 import { featuredMomentIds, featuredPhotoUrls, featuredAlbumId } from '../data/featured';
+import LazyImg from '../components/LazyImg';
 
 function formatUpdateTime(dateString: string) {
   if (!dateString || dateString === '1970-01-01') return '刚刚更新';
@@ -157,7 +158,7 @@ export default function Home() {
                             {m.images && m.images.length > 0 && (
                               <div className="grid grid-cols-3 gap-2 mt-auto">
                                 {m.images.slice(0, 3).map((img: any) => (
-                                  <img key={img} src={img} alt="" className="w-full h-20 object-cover rounded-xl" loading="lazy" />
+                                  <LazyImg key={img} src={img} alt="" className="w-full h-20 object-cover rounded-xl" />
                                 ))}
                               </div>
                             )}
@@ -176,7 +177,7 @@ export default function Home() {
                       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
                         {featuredPhotos.map((url: string) => (
                           <Link key={url} href="/photowall" className="aspect-square rounded-2xl overflow-hidden border border-white/40 dark:border-white/10 shadow-md group">
-                            <img src={url} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                            <LazyImg src={url} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                           </Link>
                         ))}
                       </div>

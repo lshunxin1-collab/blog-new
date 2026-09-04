@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import { MapPin, MessageSquare, Clock, Sparkles, Search, ArrowDownAZ, ArrowUpZA, ChevronLeft, ChevronRight, Ghost } from 'lucide-react';
 import MomentComments from '../../components/MomentComments';
+import LazyImg from '../../components/LazyImg';
 
 function timeAgo(dateStr: string) {
   const date = new Date(dateStr);
@@ -81,7 +82,7 @@ export default function MomentList({ moments, authorName, avatarUrl }: any) {
       return (
         <div className="mt-4 md:mt-8 flex justify-start sm:justify-center w-full">
           <div onClick={() => setLightbox({ images, index: 0 })} className="max-w-[80%] sm:max-w-[280px] overflow-hidden rounded-xl md:rounded-2xl border border-slate-200/50 dark:border-white/10 shadow-lg md:shadow-xl cursor-zoom-in group">
-            <img src={images[0]} alt="moment" className="w-full h-auto max-h-[300px] md:max-h-[400px] object-contain group-hover:scale-105 transition-transform duration-500" />
+            <LazyImg src={images[0]} alt="moment" className="w-full h-auto max-h-[300px] md:max-h-[400px] object-contain group-hover:scale-105 transition-transform duration-500" />
           </div>
         </div>
       );
@@ -97,7 +98,7 @@ export default function MomentList({ moments, authorName, avatarUrl }: any) {
             const isLastVisible = idx === 8 && count > 9;
             return (
               <div key={idx} onClick={() => setLightbox({ images, index: idx })} className="group relative aspect-square overflow-hidden rounded-lg md:rounded-xl bg-slate-200/20 dark:bg-slate-700/20 border border-slate-200/50 dark:border-white/10 cursor-zoom-in">
-                <img src={src} alt="moment" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                <LazyImg src={src} alt="moment" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 {isLastVisible && (
                   <div className="absolute inset-0 bg-black/60 flex items-center justify-center text-white backdrop-blur-[2px]">
                     <span className="text-lg md:text-xl font-black">+{count - 9}</span>

@@ -4,6 +4,7 @@ import { useState, useMemo, useEffect } from 'react';
 import Navbar from '../../components/Navbar';
 import PageTransition from '../../components/PageTransition';
 import { albums, Album } from '../../data/albums';
+import LazyImg from '../../components/LazyImg';
 
 export default function PhotoWallClient() {
   const [currentAlbum, setCurrentAlbum] = useState<Album | null>(null);
@@ -78,7 +79,7 @@ export default function PhotoWallClient() {
                           onClick={() => setSelectedImage(photo)}
                           className="break-inside-avoid relative group rounded-2xl overflow-hidden cursor-zoom-in shadow-lg bg-white/20 dark:bg-slate-800/20 border border-white/30 dark:border-white/10 transition-transform duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-black/20"
                         >
-                          <img src={photo.url} alt={photo.caption} className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+                          <LazyImg src={photo.url} alt={photo.caption || ''} className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105" />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-5">
                             <span className="text-black font-black text-[10px] tracking-widest uppercase mb-1 drop-shadow-md">{photo.albumName}</span>
                             <p className="text-white font-medium text-sm drop-shadow-md translate-y-4 group-hover:translate-y-0 transition-transform duration-500">{photo.caption}</p>
@@ -111,7 +112,7 @@ export default function PhotoWallClient() {
                            {album.photos[1] && <img src={album.photos[1].url} className="w-full h-full object-cover grayscale-[50%]" alt="" />}
                         </div>
                         <div className="absolute inset-0 bg-white dark:bg-slate-200 rounded-[4px] shadow-2xl border-[6px] border-white dark:border-slate-200 overflow-hidden z-20 transform group-hover:-translate-y-2 group-hover:scale-105 transition-all duration-500 relative">
-                          <img src={album.cover} alt={album.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                          <LazyImg src={album.cover} alt={album.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-5">
                             <span className="text-white font-bold text-lg drop-shadow-md translate-y-2 group-hover:translate-y-0 transition-transform duration-500">{album.photos.length} 张照片</span>
                             <span className="text-black font-medium text-xs mt-1 drop-shadow-md translate-y-2 group-hover:translate-y-0 transition-transform duration-500 delay-75">Click to Open</span>
@@ -173,7 +174,7 @@ export default function PhotoWallClient() {
                     className="break-inside-avoid relative group rounded-2xl overflow-hidden cursor-zoom-in shadow-lg bg-white/20 dark:bg-slate-800/20 border border-white/30 dark:border-white/10 transition-transform duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-black/20 animate-fade-in-up"
                     style={{ animationDelay: `${index * 50}ms` }}
                   >
-                    <img src={photo.url} alt={photo.caption || '照片'} className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+                    <LazyImg src={photo.url} alt={photo.caption || '照片'} className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-5">
                       {photo.caption && (
                         <p className="text-white font-medium text-sm drop-shadow-md translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
