@@ -65,10 +65,17 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <MusicProvider>
             <div id="app-mount-root" className="flex-1 flex flex-col transition-opacity duration-1000">
               <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
-                <div className="absolute inset-0 z-[-9] bg-white/30 dark:bg-slate-900/40 backdrop-blur-md transition-colors duration-1000"></div>
+                <div className="absolute inset-0 z-[-9] bg-white/40 dark:bg-slate-900/60 transition-colors duration-1000 md:bg-white/30 md:dark:bg-slate-900/40 md:backdrop-blur-md"></div>
 
+                {/* 手机端：静态渐变（省性能） */}
                 <div
-                  className="absolute inset-0 z-[-8] opacity-60 dark:opacity-20 mix-blend-color transition-opacity duration-1000 transform-gpu"
+                  className="absolute inset-0 z-[-8] opacity-60 dark:opacity-20 md:hidden"
+                  style={{ background: `linear-gradient(-45deg, ${siteConfig.themeColors.join(', ')})` }}
+                ></div>
+
+                {/* 桌面端：流动渐变动画 */}
+                <div
+                  className="absolute inset-0 z-[-8] opacity-60 dark:opacity-20 mix-blend-color transform-gpu hidden md:block"
                   style={{
                     background: `linear-gradient(-45deg, ${siteConfig.themeColors.join(', ')})`,
                     backgroundSize: '400% 400%',

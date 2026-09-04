@@ -12,7 +12,7 @@ export default function LazyImg({ src, alt = '', className = '', ...rest }: any)
       loading="lazy"
       decoding="async"
       onLoad={() => setLoaded(true)}
-      className={`${className} [transition:filter_.5s_ease-out,opacity_.5s_ease-out,transform_.5s_ease-out] ${loaded ? 'blur-0 opacity-100' : 'blur-md opacity-60'}`}
+      className={`${className} [transition:filter_.5s_ease-out,opacity_.5s_ease-out,transform_.5s_ease-out] ${loaded ? 'blur-0 opacity-100' : 'opacity-60 md:blur-md'}`}
       {...rest}
     />
   );
