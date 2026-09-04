@@ -49,14 +49,14 @@ export default function FeaturedGallery({ moments, photos }: { moments: any[], p
             <h2 className="text-lg sm:text-xl font-black text-slate-800 dark:text-white">精选图片</h2>
             <Link href="/photowall" className="text-xs text-slate-400 hover:text-indigo-500 font-bold ml-auto">全部照片 →</Link>
           </div>
-          <div className="flex flex-col gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {photos.map((url: string) => (
               <button
                 key={url}
                 onClick={() => setLightbox(url)}
-                className="w-full rounded-2xl overflow-hidden border border-white/40 dark:border-white/10 shadow-md group cursor-zoom-in"
+                className="aspect-square rounded-2xl overflow-hidden border border-white/40 dark:border-white/10 shadow-md group cursor-zoom-in"
               >
-                <LazyImg src={url} alt="" className="w-full h-auto max-h-[70vh] object-cover transition-transform duration-500 group-hover:scale-[1.02]" />
+                <LazyImg src={url} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
               </button>
             ))}
           </div>

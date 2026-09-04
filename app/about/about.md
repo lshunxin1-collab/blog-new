@@ -7,7 +7,7 @@ cover: https://bu.dusays.com/2026/08/20/6a85df1a65b4a.png
 description: ''
 ---
 
-# 我是一条区
+# 我是区
 
 ### 游戏：玩明日方舟、BA、原神
 

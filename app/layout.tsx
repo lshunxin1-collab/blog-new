@@ -9,8 +9,6 @@ import { siteConfig } from "../siteConfig";
 import GlobalToolbox from "../components/GlobalToolbox";
 import SplashScreen from "../components/SplashScreen";
 
-import MobileBackButton from '../components/MobileBackButton';
-
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
@@ -94,10 +92,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 
               <div className="hidden md:block">
                 <GlobalToolbox />
-              </div>
-
-              <div className="md:hidden block">
-                <MobileBackButton />
               </div>
             </div>
 
