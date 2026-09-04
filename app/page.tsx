@@ -14,7 +14,7 @@ import LyricBar from '../components/LyricBar';
 import { ToastProvider } from '../components/ToastProvider';
 
 import LatestPostsCarousel from '../components/LatestPostsCarousel';
-import VisitCounter from '../components/VisitCounter';
+import { featuredMomentIds, featuredPhotoUrls, featuredAlbumId } from '../data/featured';
 
 function formatUpdateTime(dateString: string) {
   if (!dateString || dateString === '1970-01-01') return '刚刚更新';
@@ -61,7 +61,32 @@ export default function Home() {
   const top5Posts = allPosts.length > 0 ? allPosts.slice(0, 5) : [{ slug: 'none', title: '暂无文章', description: '快去写第一篇吧！', cover: siteConfig.defaultPostCover, date: '', formattedDate: '' }];
 
   const realPhotoCount = albums.reduce((total, album) => total + album.photos.length, 0);
-  const latestAlbum = albums.length > 0 ? albums[0] : { id: '', title: '照片墙', description: '查看摄影', cover: siteConfig.photoWallImage, date: '' };
+  const latestAlbum = (featuredAlbumId ? albums.find(a => a.id === featuredAlbumId) : undefined) || (albums.length > 0 ? albums[0] : { id: '', title: '照片墙', description: '查看摄影', cover: siteConfig.photoWallImage, date: '' });
+
+  // 主页精选说说（按后台配置的 ID 顺序）
+  let featuredMoments: any[] = [];
+  try {
+    const momentsDir = path.join(process.cwd(), 'moments');
+    if (fs.existsSync(momentsDir)) {
+      featuredMoments = fs.readdirSync(momentsDir)
+        .filter(f => f.endsWith('.md'))
+        .map(fileName => {
+          const fullPath = path.join(momentsDir, fileName);
+          const { data, content } = matter(fs.readFileSync(fullPath, 'utf8'));
+          return {
+            id: fileName.replace(/\.md$/, ''),
+            date: data.date || '',
+            location: data.location || '',
+            images: data.images || [],
+            content: content.trim()
+          };
+        })
+        .filter((m: any) => featuredMomentIds.includes(m.id));
+      featuredMoments.sort((a: any, b: any) => featuredMomentIds.indexOf(a.id) - featuredMomentIds.indexOf(b.id));
+    }
+  } catch (e) {}
+
+  const featuredPhotos = featuredPhotoUrls;
 
   return (
     <ToastProvider>
@@ -113,9 +138,54 @@ export default function Home() {
                 </div>
               </div>
 
-            </main>
+              {/* 主页精选：说说 + 图片 */}
+              {(featuredMoments.length > 0 || featuredPhotos.length > 0) && (
+                <div className="w-full flex flex-col gap-8 mt-2">
+                  {featuredMoments.length > 0 && (
+                    <section className="w-full">
+                      <div className="flex items-center gap-2 mb-4">
+                        <h2 className="text-lg sm:text-xl font-black text-slate-800 dark:text-white">📌 精选说说</h2>
+                        <Link href="/moments" className="text-xs text-slate-400 hover:text-indigo-500 font-bold ml-auto">全部说说 →</Link>
+                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {featuredMoments.map((m: any) => (
+                          <div key={m.id} className="rounded-3xl bg-white/40 dark:bg-slate-800/50 backdrop-blur-md border border-white/40 dark:border-white/10 shadow-lg p-5 flex flex-col gap-3">
+                            <span className="text-[11px] font-bold text-slate-400">
+                              {m.date ? new Date(m.date).toLocaleDateString('zh-CN') : ''}{m.location ? ` · ${m.location}` : ''}
+                            </span>
+                            <p className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed whitespace-pre-wrap line-clamp-4">{m.content}</p>
+                            {m.images && m.images.length > 0 && (
+                              <div className="grid grid-cols-3 gap-2 mt-auto">
+                                {m.images.slice(0, 3).map((img: any) => (
+                                  <img key={img} src={img} alt="" className="w-full h-20 object-cover rounded-xl" loading="lazy" />
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </section>
+                  )}
 
-            <VisitCounter />
+                  {featuredPhotos.length > 0 && (
+                    <section className="w-full">
+                      <div className="flex items-center gap-2 mb-4">
+                        <h2 className="text-lg sm:text-xl font-black text-slate-800 dark:text-white">📷 精选图片</h2>
+                        <Link href="/photowall" className="text-xs text-slate-400 hover:text-indigo-500 font-bold ml-auto">全部照片 →</Link>
+                      </div>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                        {featuredPhotos.map((url: string) => (
+                          <Link key={url} href="/photowall" className="aspect-square rounded-2xl overflow-hidden border border-white/40 dark:border-white/10 shadow-md group">
+                            <img src={url} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                          </Link>
+                        ))}
+                      </div>
+                    </section>
+                  )}
+                </div>
+              )}
+
+            </main>
           </div>
         </PageTransition>
       </div>
