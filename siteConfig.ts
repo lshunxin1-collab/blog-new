@@ -5,7 +5,7 @@ export const siteConfig = {
   title: "SHIRO",
   faviconUrl: "https://bu.dusays.com/2026/08/19/6a85cfd0ccf71.jpg",
   authorName: "",
-  bio: "此站当空间发，手机端右边三个点点开查看更多\nThis website is like a private space to post some content.",
+  bio: "此站当空间发\nThis website is like a private space to post some content.",
 
   navTitle: "",
 

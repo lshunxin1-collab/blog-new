@@ -145,7 +145,7 @@ export default function Home() {
                   {featuredMoments.length > 0 && (
                     <section className="w-full">
                       <div className="flex items-center gap-2 mb-4">
-                        <h2 className="text-lg sm:text-xl font-black text-slate-800 dark:text-white">📌 精选说说</h2>
+                        <h2 className="text-lg sm:text-xl font-black text-slate-800 dark:text-white">精选说说</h2>
                         <Link href="/moments" className="text-xs text-slate-400 hover:text-indigo-500 font-bold ml-auto">全部说说 →</Link>
                       </div>
                       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -171,7 +171,7 @@ export default function Home() {
                   {featuredPhotos.length > 0 && (
                     <section className="w-full">
                       <div className="flex items-center gap-2 mb-4">
-                        <h2 className="text-lg sm:text-xl font-black text-slate-800 dark:text-white">📷 精选图片</h2>
+                        <h2 className="text-lg sm:text-xl font-black text-slate-800 dark:text-white">精选图片</h2>
                         <Link href="/photowall" className="text-xs text-slate-400 hover:text-indigo-500 font-bold ml-auto">全部照片 →</Link>
                       </div>
                       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
